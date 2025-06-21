@@ -9,14 +9,12 @@ An academic project implementing optimization algorithms to solve nonogram puzzl
 - Multiple algorithm implementations
 
 ## Algorithms Implemented
-|---------------------------------------------------------------|
 | Algorithm            | Key Characteristics                    |
 |----------------------|----------------------------------------|
 | Brute-force          | Complete search algorithm              |
 | Hill Climbing        | Both classic and stochastic verrsion   |
 | Tabu Search          | With aspiration criteria               |
 | Genetic Algorithm    | Customizable crossover/mutation        |
-|---------------------------------------------------------------|
 
 ## Requirements
 - Python 3.8+
