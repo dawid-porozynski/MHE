@@ -6,7 +6,7 @@ def hill_climbing(nonogram, max_iterations, stochastic=False):
     current = random_grid(nonogram.R, nonogram.C)
     current_loss = nonogram.loss(current)
 
-    for _ in range(max_iterations):
+    for i in range(max_iterations):
         neighbours = generate_neighbours(current)
         if stochastic:
             neighbour = random.choice(neighbours)

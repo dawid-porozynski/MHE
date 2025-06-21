@@ -22,4 +22,11 @@ An academic project implementing optimization algorithms to solve nonogram puzzl
 
 ## Basic Command
 bash
-python main.py -a [algorithm] -f input.txt
+python3 main.py -a [algorithm] -f input.txt
+
+python3 main.py -a genetic -f input2.txt \
+    --pop_size 200 \
+    --max_gen 500 \
+    --crossover two_point \
+    --mutation bit_flip \
+    --mutation_rate 0.05

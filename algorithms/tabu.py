@@ -9,7 +9,7 @@ def tabu_search(nonogram, max_iterations, tabu_size=100):
     best_loss = nonogram.loss(current)
     tabu_list = deque([current], maxlen=tabu_size)  # Kolejka o stałym rozmiarze
 
-    for _ in range(max_iterations):
+    for i in range(max_iterations):
         neighbours = [n for n in generate_neighbours(current) if n not in tabu_list]
         if not neighbours:
             break

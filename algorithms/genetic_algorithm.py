@@ -19,7 +19,7 @@ def genetic_algorithm(nonogram, pop_size, max_generations, crossover_method, mut
 
     def selection(population, fitnesses):
         selected = []
-        for _ in range(pop_size):
+        for i in range(pop_size):
             indices = random.sample(range(pop_size), 2)
             idx1, idx2 = indices
             selected.append(population[idx1] if fitnesses[idx1] < fitnesses[idx2] else population[idx2])
@@ -49,7 +49,7 @@ def genetic_algorithm(nonogram, pop_size, max_generations, crossover_method, mut
                 individual[idx1], individual[idx2] = individual[idx2], individual[idx1]
             return individual
 
-    population = [create_individual() for _ in range(pop_size)]
+    population = [create_individual() for i in range(pop_size)]
     best_individual = None
     best_fitness = float('inf')
 

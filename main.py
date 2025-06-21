@@ -43,7 +43,9 @@ def print_grid(grid):
 
 
 def main():
+    # konfiguracja parsera
     parser = argparse.ArgumentParser(description='Nonogram Solver')
+    # dodawanie argumentow dla cli
     parser.add_argument('-a', '--algorithm', required=True,
                         choices=['full', 'hill', 'hill_stoch', 'tabu', 'genetic'])
     parser.add_argument('-f', '--file', type=argparse.FileType('r'), default=sys.stdin)
@@ -59,12 +61,15 @@ def main():
     # Wczytanie danych
     data = args.file.readlines()
     R, C = map(int, data[0].split())
+    # definicje wierszy
     rows = [list(map(int, line.split())) for line in data[1:R + 1]]
+    # definicje kolumn
     cols = [list(map(int, line.split())) for line in data[R + 1:R + 1 + C]]
 
+    # inicjalizajca
     nonogram = Nonogram(rows, cols)
 
-    # Wybór algorytmu z terminala
+    # wybor algorytmu z terminala
     if args.algorithm == 'full':
         grid, loss = full_search(nonogram)
     elif args.algorithm == 'hill':
@@ -85,7 +90,7 @@ def main():
         sys.exit(1)
 
     print_grid(grid)
-    print(f"Loss: {loss}")
+    print(f"Loss: {loss}") # liczba bledow
 
 
 if __name__ == '__main__':
