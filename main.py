@@ -2,6 +2,7 @@ import argparse
 import sys
 import matplotlib.pyplot as plt
 import numpy as np
+
 from models.nonogram import Nonogram
 from algorithms.hill_climbing import hill_climbing
 from algorithms.tabu import tabu_search
@@ -10,12 +11,11 @@ from algorithms.full_search import full_search
 
 
 def print_grid(grid):
-    """Wyświetla siatkę w terminalu i jako wizualizację graficzną"""
-    # Wersja tekstowa
+    #Wersja tekstowa w terminalu
     for row in grid:
-        print(''.join('#' if cell == 1 else '.' for cell in row))
+        print(''.join('#' if cell == 1 else '0' for cell in row))
 
-    # Wersja graficzna
+    # Wersja graficzna wizualizacji
     grid_np = np.array(grid)
     rows, cols = grid_np.shape
 
@@ -64,7 +64,7 @@ def main():
 
     nonogram = Nonogram(rows, cols)
 
-    # Wybór algorytmu
+    # Wybór algorytmu z terminala
     if args.algorithm == 'full':
         grid, loss = full_search(nonogram)
     elif args.algorithm == 'hill':
@@ -79,7 +79,7 @@ def main():
             args.crossover, args.mutation, args.mutation_rate
         )
 
-    # Wyświetlenie wyników
+    # Wyświetlenie funk loss
     if grid is None:
         print("No solution found", file=sys.stderr)
         sys.exit(1)

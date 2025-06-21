@@ -1,29 +1,28 @@
-import sys
-from models.nonogram import Nonogram
+import math
 
 
 def full_search(nonogram):
     R, C = nonogram.R, nonogram.C
-    total_cells = R * C
-    if total_cells > 20:
-        print("Full search skipped for grid size > 20", file=sys.stderr)
-        return None, float('inf')
+    best_grid = None  # Najlepsza znaleziona siatka
+    best_loss = math.inf  # Minimalna strata (początkowo nieskończoność)
 
-    best_grid = None
-    best_loss = float('inf')
-    for i in range(2 ** total_cells):
+    # wszystkie mozliwosci
+    for i in range(2 ** (R * C)):
         grid = []
+        # Konwersja liczby na siatkę
         for r in range(R):
             row = []
             for c in range(C):
-                bit_index = r * C + c
-                bit = (i >> bit_index) & 1
+                bit_index = r * C + c  # Pozycja bitu
+                bit = (i >> bit_index) & 1  # Wyciągnięcie bitu
                 row.append(bit)
-            grid.append(row)
+            grid.append(row) # dodanie do siatki wiersza
+
         loss_val = nonogram.loss(grid)
-        if loss_val == 0:
+        if loss_val == 0:  # Rozwiazanie idealne
             return grid, 0
-        if loss_val < best_loss:
-            best_loss = loss_val
+        if loss_val < best_loss:  # Aktualizacja najlepszego
             best_grid = grid
-    return best_grid, best_loss
+            best_loss = loss_val
+
+    return best_grid, best_loss  # najlepsze znalezione

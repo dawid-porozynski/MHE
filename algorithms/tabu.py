@@ -1,4 +1,5 @@
 from collections import deque
+# Kolejka dwukierunkowa używana do implementacji listy tabu
 from models.nonogram import random_grid, generate_neighbours
 
 
@@ -6,7 +7,7 @@ def tabu_search(nonogram, max_iterations, tabu_size=100):
     current = random_grid(nonogram.R, nonogram.C)
     best = current
     best_loss = nonogram.loss(current)
-    tabu_list = deque([current], maxlen=tabu_size)
+    tabu_list = deque([current], maxlen=tabu_size)  # Kolejka o stałym rozmiarze
 
     for _ in range(max_iterations):
         neighbours = [n for n in generate_neighbours(current) if n not in tabu_list]

@@ -1,6 +1,4 @@
 import random
-from models.nonogram import Nonogram
-
 
 def genetic_algorithm(nonogram, pop_size, max_generations, crossover_method, mutation_method, mutation_rate):
     def create_individual():
