@@ -15,21 +15,25 @@ class Nonogram:
                 count += 1
             else:
                 if count > 0:
-                    blocks.append(count) # Zapis bloku przy zmianie 1→0
+                    # Zapis bloku przy zmianie 1->0
+                    blocks.append(count)
                     count = 0
         if count > 0:
-            blocks.append(count) # Ostatni blok na końcu
+            # Ostatni blok na końcu
+            blocks.append(count)
         return blocks
 
     def loss(self, grid):
         errors = 0
 
+        # sprawdza rows
         for i in range(self.R): # sprawdza rows
             actual = self.compute_blocks(grid[i])
             if actual != self.rows[i]:
                 errors += 1
 
-        for j in range(self.C): # sprawdza kolumny
+        # sprawdza kolumny
+        for j in range(self.C):
             col = [grid[i][j] for i in range(self.R)]
             actual = self.compute_blocks(col)
             if actual != self.cols[j]:

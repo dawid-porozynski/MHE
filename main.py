@@ -11,7 +11,7 @@ from algorithms.full_search import full_search
 
 
 def print_grid(grid):
-    #Wersja tekstowa w terminalu
+    # Wersja tekstowa w terminalu
     for row in grid:
         print(''.join('#' if cell == 1 else '0' for cell in row))
 
@@ -90,7 +90,7 @@ def main():
         sys.exit(1)
 
     print_grid(grid)
-    print(f"Loss: {loss}") # liczba bledow
+    print(f"Loss: {loss}")  # liczba bledow
 
 
 if __name__ == '__main__':

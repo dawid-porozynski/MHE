@@ -3,8 +3,10 @@ import math
 
 def full_search(nonogram):
     R, C = nonogram.R, nonogram.C
-    best_grid = None  # Najlepsza znaleziona siatka
-    best_loss = math.inf  # Minimalna strata (początkowo nieskończoność)
+    # Najlepsza znaleziona siatka
+    best_grid = None
+    # Minimalna strata (początkowo nieskończoność)
+    best_loss = math.inf
 
     # wszystkie mozliwosci
     for i in range(2 ** (R * C)):
@@ -13,16 +15,21 @@ def full_search(nonogram):
         for r in range(R):
             row = []
             for c in range(C):
-                bit_index = r * C + c  # Pozycja bitu
-                bit = (i >> bit_index) & 1  # Wyciągnięcie bitu
+                # Pozycja bitu
+                bit_index = r * C + c
+                # Wyciągnięcie bitu
+                bit = (i >> bit_index) & 1
                 row.append(bit)
-            grid.append(row) # dodanie do siatki wiersza
+                # dodanie do siatki wiersza
+            grid.append(row)
 
         loss_val = nonogram.loss(grid)
-        if loss_val == 0:  # Rozwiazanie idealne
+        # Rozwiazanie idealne
+        if loss_val == 0:
             return grid, 0
-        if loss_val < best_loss:  # Aktualizacja najlepszego
+        # Aktualizacja najlepszego
+        if loss_val < best_loss:
             best_grid = grid
             best_loss = loss_val
-
-    return best_grid, best_loss  # najlepsze znalezione
+    # najlepsze znalezione
+    return best_grid, best_loss

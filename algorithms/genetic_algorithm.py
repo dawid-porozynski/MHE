@@ -1,9 +1,10 @@
 import random
 
 def genetic_algorithm(nonogram, pop_size, max_generations, crossover_method, mutation_method, mutation_rate):
+# tworzy osobnika
     def create_individual():
         return [random.randint(0, 1) for _ in range(nonogram.R * nonogram.C)]
-
+# konwersja na siatke
     def individual_to_grid(individual):
         grid = []
         index = 0
@@ -16,7 +17,7 @@ def genetic_algorithm(nonogram, pop_size, max_generations, crossover_method, mut
     def fitness(individual):
         grid = individual_to_grid(individual)
         return nonogram.loss(grid)
-
+# losuje 2 osobnikow i wybiera ktory lepszy
     def selection(population, fitnesses):
         selected = []
         for i in range(pop_size):
